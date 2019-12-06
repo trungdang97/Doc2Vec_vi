@@ -18,8 +18,11 @@ def ReadDataFromFile(path):
     return sentences
 
 
-train = ReadDataFromFile(train_path)
-test = ReadDataFromFile(test_path)
+#train = ReadDataFromFile(train_path)
+#test = ReadDataFromFile(test_path)
+
+#sem2015 = ReadDataFromFile('datasets/en/sem_eval/semeval2015_no_polarity/train.txt')
+sem2016 = ReadDataFromFile('datasets/en/sem_eval/semeval2016_no_label/train.txt')
 
 # save model after training
 
@@ -29,7 +32,7 @@ test = ReadDataFromFile(test_path)
 # model.save("lee.model")
 
 # load model
-model = Doc2Vec.load("lee.model")
+# model = Doc2Vec.load("lee.model")
 # vector = model.infer_vector(['only', 'you', 'can', 'prevent', 'forest', 'fires']) # infer_vector is a method that convert a list of tokens into a vector
 # we can say doc2vec (paragraph vector) is just word2vec, however the words' vectors are modified to fit the multiple context that it was used in
 
@@ -39,10 +42,22 @@ model = Doc2Vec.load("lee.model")
 # print(vector1)
 # print(vector2)
 
-vector1 = model.infer_vector(test[3].words, alpha=0.5, steps=100)
-vector2 = model.infer_vector(test[20].words, alpha=0.5, steps=100)
-cs = metrics.pairwise.cosine_similarity(vector1.reshape(1,-1),vector2.reshape(1,-1))
-print(cs)
+# model = Doc2Vec.load("doc2vec_en/models/lee.model")
+# model.build_vocab(sem2015, update=True)
+# model.train(documents=sem2015, total_examples=model.corpus_count, epochs=model.epochs)
+# model.save("doc2vec_en/models/sem2015.model")
+
+model = Doc2Vec.load("doc2vec_en/models/lee.model")
+model.build_vocab(sem2016, update=True)
+model.train(documents=sem2016, total_examples=model.corpus_count, epochs=model.epochs)
+model.save("doc2vec_en/models/sem2016.model")
+
+print("Done")
+
+# vector1 = model.infer_vector(test[3].words, alpha=0.5, steps=100)
+# vector2 = model.infer_vector(test[20].words, alpha=0.5, steps=100)
+# cs = metrics.pairwise.cosine_similarity(vector1.reshape(1,-1),vector2.reshape(1,-1))
+# print(cs)
 # for doc in test:
 #     vector2 = model.infer_vector(doc.words, alpha=0.5, steps=100)
 #     cs = 1-spatial.distance.cosine(vector1, vector2)
