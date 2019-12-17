@@ -7,7 +7,7 @@ Có thể build lại sử dụng API tách theo string input.
 Chú ý corpus có kích thước rất lớn (> 600mb) nên cần có đủ bộ nhớ mở file.
 
 Corpus có dạng các câu được tokenize như file "datasets/vi/corpus-title-small.tok.txt".
-Tokenize file bằng CMD: java -jar <tên_file_executable_jar> -i "<đường_dẫn_file_input>" -o "<đường_dẫn_file_output>"
+Tokenize file bằng CMD: java -jar <tên_file_executable_jar> -i <đường_dẫn_file_input> -o <đường_dẫn_file_output>
 
 File train: doc2vec_vi/doc2vec_train.py (sửa đường dẫn đến corpus)
 File test: doc2vec_vi/doc2vec_test.py
