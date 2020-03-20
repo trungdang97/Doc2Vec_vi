@@ -1,5 +1,0 @@
-Build a executable JAR file, must rewrite and rebuild the main function in VietTokenizer.java and use the API in the userguide for string tokenize:
-
-java -jar <file> -i <input_path> -o <output_path>
-
-E.g: java -jar tokenizer-lhp.jar -i sample.txt -o tok.txt

@@ -33,20 +33,19 @@ def TSSS(v1, v2):
     ss = SS(r,degrees)
     return ts*ss
 
-epochs = 100
+epochs = 10000
 
 model = Doc2Vec.load('doc2vec_vi/models/corpus-title-1135.model')
 
-sent1 = ['Mô hình', 'đàn', 'chuột', 'sắp', 'ra', 'vườn', 'hoa', 'Nguyễn Huệ']
-sent2 = ['Lộ diện', 'đàn', 'chuột', 'ngộ nghĩnh', 'sắp',
-         'ra', 'đường', 'hoa', 'Nguyễn Huệ', 'Tết', 'Canh Tý']
+sent1 = ['Thực hiện','các', 'biện pháp', 'phòng',',', 'chống','bệnh', 'viêm phổi cấp', 'do', 'virus', 'Corona']
+sent2 = ['Các', 'biện pháp', 'chống', 'dịch', 'nCoV', 'tại', 'Việt Nam']
 
 sent3 = ['Người dân', 'Hà Nội', 'Sài Gòn', 'đón', 'Giáng sinh']
 sent4 = ['Người dân', 'khắp', 'thế giới', 'đón', 'Giáng sinh']
 
-v1 = model.infer_vector(sent1, epochs=epochs)
-v2 = model.infer_vector(sent2, epochs=epochs)
+v1 = model.infer_vector([x.lower() for x in sent1], epochs=epochs)
+v2 = model.infer_vector([x.lower() for x in sent2], epochs=epochs)
 
-# print(str(1-spatial.distance.cosine(v1,v2)))
+print(str(1-spatial.distance.cosine(v1,v2)))
 
-print(TSSS(v1, v2))
+# print(TSSS(v1, v2))

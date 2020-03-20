@@ -1,0 +1,1 @@
+java -jar vitokenizer_api.jar
